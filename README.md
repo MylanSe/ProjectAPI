@@ -75,16 +75,37 @@ npm install
 
 3. **Configurer les variables d'environnement**
 
-Créer un fichier \`.env\` à la racine du projet :
+Copier le fichier d'exemple et le modifier :
+
+\`\`\`bash
+cp .env.example .env
+\`\`\`
+
+Ou créer un fichier \`.env\` à la racine du projet avec ces variables :
 
 \`\`\`env
+# Configuration de l'application
 PORT=3000
 NODE_ENV=development
+
+# Configuration MongoDB
+# Local: mongodb://localhost:27017/configurateur_pc
+# Atlas: mongodb+srv://username:password@cluster.mongodb.net/configurateur_pc
 MONGODB_URI=mongodb://localhost:27017/configurateur_pc
-JWT_SECRET=votre_secret_jwt_super_securise_a_changer
+
+# Configuration JWT
+# Générer une clé secrète forte (ex: node -e "console.log(require('crypto').randomBytes(32).toString('hex'))")
+JWT_SECRET=votre_secret_jwt_super_securise_a_changer_en_production
 JWT_EXPIRE=7d
-ADMIN_EMAIL=admin@configurateurpc.com
-ADMIN_PASSWORD=Admin123!
+
+# Compte administrateur par défaut (à modifier en production)
+ADMIN_EMAIL=admin@example.com
+ADMIN_PASSWORD=ChangeMe123!
+\`\`\`
+
+⚠️ **Important** : En production, générez un JWT_SECRET sécurisé :
+\`\`\`bash
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 \`\`\`
 
 4. **Démarrer MongoDB**
