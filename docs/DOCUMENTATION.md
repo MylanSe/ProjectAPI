@@ -1,4 +1,6 @@
-# 📦 Projet API ConfigurateurPC - Documentation Complète
+# 📦 Architecture & Fonctionnalités - API ConfigurateurPC
+
+> Documentation technique complète du projet
 
 ## ✅ Fonctionnalités Implémentées
 
@@ -125,50 +127,16 @@ ProjetAPI/
 ├── README.md                # Documentation principale
 ├── CONTRIBUTING.md          # Guide de contribution
 └── projet API.md            # Cahier des charges original
-\`\`\`
+```
 
-## 🚀 Démarrage Rapide
+## � Endpoints Disponibles
 
-### 1. Installation
-\`\`\`bash
-npm install
-\`\`\`
-
-### 2. Configuration
-Copier \`.env.example\` vers \`.env\` et configurer :
-\`\`\`env
-MONGODB_URI=mongodb://localhost:27017/configurateur_pc
-JWT_SECRET=votre_secret_securise
-\`\`\`
-
-### 3. Peupler la base de données
-\`\`\`bash
-npm run seed
-\`\`\`
-
-### 4. Lancer l'application
-\`\`\`bash
-npm run dev
-\`\`\`
-
-### 5. Accéder à la documentation
-\`\`\`
-http://localhost:3000/api-docs
-\`\`\`
-
-### 6. Exécuter les tests
-\`\`\`bash
-npm test
-\`\`\`
-
-## 📊 Endpoints Disponibles
+> **Note** : Pour une documentation détaillée des endpoints, consultez [API_REFERENCE.md](./API_REFERENCE.md)
 
 ### Authentification (/api/auth)
 - POST /register - Inscription
 - POST /login - Connexion
-- GET /me - Profil (authentifié)
-- GET /users - Liste utilisateurs (admin)
-- GET /users/:id - Détails utilisateur (admin)
+- GET /profile - Profil (authentifié)
 
 ### Catégories (/api/categories)
 - GET / - Liste
@@ -183,9 +151,6 @@ npm test
 - GET /:id - Détails
 - PUT /:id - Modifier (admin)
 - DELETE /:id - Supprimer (admin)
-- POST /:id/prices - Ajouter prix (admin)
-- PUT /:id/prices/:priceId - Modifier prix (admin)
-- DELETE /:id/prices/:priceId - Supprimer prix (admin)
 
 ### Marchands (/api/merchants)
 - GET / - Liste
@@ -205,9 +170,9 @@ npm test
 ## 🔐 Authentification
 
 Toutes les routes protégées nécessitent un header Authorization :
-\`\`\`
+```
 Authorization: Bearer <token_jwt>
-\`\`\`
+```
 
 ## 🧪 Tests
 
@@ -224,12 +189,12 @@ Authorization: Bearer <token_jwt>
 - ✅ Gestion des erreurs
 
 ### Lancer les tests :
-\`\`\`bash
+```bash
 npm test                # Tous les tests
-npm run test:watch      # Mode watch
-\`\`\`
+npm run test:coverage   # Avec couverture
+```
 
-## 📝 Données de test (après seed)
+## 📝 Données de test (après npm run seed)
 
 ### Compte Admin
 - Email: admin@configurateurpc.com
@@ -245,7 +210,7 @@ npm run test:watch      # Mode watch
 - 3 marchands (LDLC, TopAchat, Amazon)
 - 1 configuration exemple
 
-## 🛠️ Technologies Utilisées
+## 🛠️ Stack Technique
 
 ### Backend
 - Node.js v14+
@@ -269,35 +234,9 @@ npm run test:watch      # Mode watch
 - cors (CORS)
 - PDFKit (génération PDF)
 
-## 📈 Prochaines Étapes (Roadmap)
+## � Ressources Complémentaires
 
-### BackOffice (optionnel)
-- Interface React/Angular
-- Dashboard admin
-- Gestion visuelle des composants
-- Statistiques et analytics
-
-### Fonctionnalités Avancées
-- Vérification de compatibilité
-- Système de recommandations
-- Notifications temps réel
-- API de synchronisation prix
-- Multi-langues
-- Cache Redis
-
-## 🤝 Contribution
-
-Voir [CONTRIBUTING.md](CONTRIBUTING.md) pour les guidelines.
-
-## 📄 Licence
-
-ISC License
-
-## 📧 Support
-
-support@configurateurpc.com
-
----
-
-**Projet réalisé pour ConfigurateurPC.com**
-*Version 1.0.0 - Janvier 2026*
+- [QUICKSTART.md](./QUICKSTART.md) - Installation rapide
+- [API_REFERENCE.md](./API_REFERENCE.md) - Référence des endpoints
+- [DOCKER.md](./DOCKER.md) - Déploiement Docker
+- [CONTRIBUTING.md](./CONTRIBUTING.md) - Guide de contribution

@@ -1,366 +1,208 @@
-# API ConfigurateurPC.com
+# 🖥️ API ConfigurateurPC
 
 API RESTful pour la configuration de PC sur mesure développée avec Node.js, Express et MongoDB.
 
+[![Node.js](https://img.shields.io/badge/Node.js-v14+-green.svg)](https://nodejs.org/)
+[![Express](https://img.shields.io/badge/Express-v4.18-blue.svg)](https://expressjs.com/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-v5.0-green.svg)](https://www.mongodb.com/)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 ## 📋 Description
 
-Cette API permet aux utilisateurs de créer des configurations PC personnalisées en sélectionnant des composants matériels, en comparant les prix de différents marchands et en exportant leurs configurations au format PDF.
+Cette API permet de créer des configurations PC personnalisées en sélectionnant des composants matériels, comparant les prix de différents marchands et exportant les configurations au format PDF.
 
-## 🚀 Fonctionnalités
+### Fonctionnalités principales
 
-### Gestion des Utilisateurs
-- ✅ Inscription et connexion avec JWT
-- ✅ Rôles utilisateur (user/admin)
-- ✅ Gestion du profil utilisateur
+- 🔐 **Authentification** : Inscription/Connexion avec JWT, gestion des rôles (user/admin)
+- 📦 **Composants** : CRUD complet, filtrage par catégorie/marque, spécifications techniques
+- 🏪 **Marchands** : Gestion des partenaires, prix, stocks et commissions
+- ⚙️ **Configurations** : Création, sauvegarde, calcul automatique des coûts, export PDF
+- 📚 **Documentation** : Swagger UI interactive
+- ✅ **Tests** : Couverture complète avec Jest
 
-### Gestion des Catégories et Composants
-- ✅ CRUD complet des catégories (CPU, GPU, RAM, etc.)
-- ✅ CRUD complet des composants matériels
-- ✅ Filtrage par catégorie et marque
-- ✅ Spécifications techniques détaillées
+## 🚀 Démarrage Rapide
 
-### Gestion des Partenaires Marchands
-- ✅ CRUD des partenaires marchands
-- ✅ Gestion des prix par marchand
-- ✅ Suivi des stocks et disponibilité
-- ✅ Programme d'affiliation
-
-### Gestion des Configurations
-- ✅ Création et sauvegarde de configurations
-- ✅ Calcul automatique du coût total
-- ✅ Export PDF des configurations
-- ✅ Gestion multi-configurations par utilisateur
-
-### Sécurité
-- ✅ Authentification JWT
-- ✅ Protection des routes admin
-- ✅ Hashage bcrypt des mots de passe
-- ✅ Validation des données
-
-### Documentation et Tests
-- ✅ Documentation Swagger/OpenAPI
-- ✅ Tests unitaires avec Jest et Supertest
-- ✅ Couverture de tous les endpoints
-
-## 🛠️ Technologies
-
-- **Backend**: Node.js, Express.js
-- **Base de données**: MongoDB avec Mongoose
-- **Authentification**: JWT (JSON Web Tokens)
-- **Sécurité**: bcryptjs
-- **Documentation**: Swagger UI, swagger-jsdoc
-- **Export PDF**: PDFKit
-- **Tests**: Jest, Supertest
-- **Autres**: dotenv, cors, express-validator
-
-## 📦 Installation
-
-### 🐳 Option 1 : Installation avec Docker (Recommandé)
-
-La méthode la plus simple pour démarrer l'application avec MongoDB.
-
-**Prérequis**
-- Docker Desktop installé et en cours d'exécution
-
-**Démarrage rapide**
+### Option 1 : Avec Docker (Recommandé)
 
 ```bash
-# Démarrer avec le script PowerShell
-.\docker-manage.ps1 start
-
-# OU avec docker-compose directement
+# Démarrer les services
 docker-compose up -d
 
 # Peupler la base de données
-.\docker-manage.ps1 seed
-# OU
 docker-compose exec app npm run seed
+
+# Accéder à l'API
+# http://localhost:3000
+# http://localhost:3000/api-docs (Documentation)
 ```
 
-**Commandes disponibles**
+📖 [Guide complet Docker](./docs/DOCKER.md)
+
+### Option 2 : Installation Manuelle
+
+**Prérequis** : Node.js (v14+) et MongoDB
+
 ```bash
-.\docker-manage.ps1 start    # Démarrer en production
-.\docker-manage.ps1 dev      # Démarrer en développement (hot-reload)
-.\docker-manage.ps1 stop     # Arrêter les services
-.\docker-manage.ps1 logs     # Voir les logs
-.\docker-manage.ps1 status   # État des services
-.\docker-manage.ps1 help     # Voir toutes les commandes
+# 1. Installer les dépendances
+npm install
+
+# 2. Configurer l'environnement
+cp .env.example .env
+# Éditer .env avec vos paramètres
+
+# 3. Démarrer MongoDB (si local)
+# Windows : le service démarre automatiquement
+# Linux : sudo systemctl start mongodb
+# Mac : brew services start mongodb-community
+
+# 4. Peupler la base de données
+npm run seed
+
+# 5. Démarrer l'API
+npm run dev
 ```
 
-📖 **Documentation complète** : Voir [DOCKER.md](DOCKER.md)
+📖 [Guide d'installation détaillé](./docs/QUICKSTART.md)
 
----
+## 📖 Documentation
 
-### 💻 Option 2 : Installation manuelle
+| Document | Description |
+|----------|-------------|
+| [QUICKSTART.md](./docs/QUICKSTART.md) | Installation pas à pas (5 min) |
+| [DOCKER.md](./docs/DOCKER.md) | Utilisation avec Docker |
+| [API_REFERENCE.md](./docs/API_REFERENCE.md) | Référence complète des endpoints |
+| [CONTRIBUTING.md](./docs/CONTRIBUTING.md) | Guide de contribution |
 
-### Prérequis
-- Node.js (v14 ou supérieur)
-- MongoDB (local ou Atlas)
-- npm ou yarn
+### Documentation interactive
 
-### Étapes d'installation
+Une fois l'API démarrée, accédez à la documentation Swagger :
+- **URL** : http://localhost:3000/api-docs
+- Interface interactive pour tester tous les endpoints
 
-1. **Cloner le repository**
-\`\`\`bash
-git clone <url-du-repo>
-cd ProjetAPI
-\`\`\`
+## 🛠️ Technologies
 
-2. **Installer les dépendances**
-\`\`\`bash
-npm install
-\`\`\`
-
-3. **Configurer les variables d'environnement**
-
-Copier le fichier d'exemple et le modifier :
-
-\`\`\`bash
-cp .env.example .env
-\`\`\`
-
-Ou créer un fichier \`.env\` à la racine du projet avec ces variables :
-
-\`\`\`env
-# Configuration de l'application
-PORT=3000
-NODE_ENV=development
-
-# Configuration MongoDB
-# Local: mongodb://localhost:27017/configurateur_pc
-# Atlas: mongodb+srv://username:password@cluster.mongodb.net/configurateur_pc
-MONGODB_URI=mongodb://localhost:27017/configurateur_pc
-
-# Configuration JWT
-# Générer une clé secrète forte (ex: node -e "console.log(require('crypto').randomBytes(32).toString('hex'))")
-JWT_SECRET=votre_secret_jwt_super_securise_a_changer_en_production
-JWT_EXPIRE=7d
-
-# Compte administrateur par défaut (à modifier en production)
-ADMIN_EMAIL=admin@example.com
-ADMIN_PASSWORD=ChangeMe123!
-\`\`\`
-
-⚠️ **Important** : En production, générez un JWT_SECRET sécurisé :
-\`\`\`bash
-node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
-\`\`\`
-
-4. **Démarrer MongoDB**
-\`\`\`bash
-# Si MongoDB est installé localement
-mongod
-\`\`\`
-
-5. **Lancer l'application**
-
-Mode développement :
-\`\`\`bash
-npm run dev
-\`\`\`
-
-Mode production :
-\`\`\`bash
-npm start
-\`\`\`
-
-L'API sera accessible sur \`http://localhost:3000\`
-
-## 📚 Documentation API
-
-Une fois l'application lancée, la documentation Swagger est disponible sur :
-\`\`\`
-http://localhost:3000/api-docs
-\`\`\`
-
-## 🧪 Tests
-
-Lancer tous les tests :
-\`\`\`bash
-npm test
-\`\`\`
-
-Lancer les tests en mode watch :
-\`\`\`bash
-npm run test:watch
-\`\`\`
-
-## 📌 Endpoints Principaux
-
-### Authentification
-- \`POST /api/auth/register\` - Inscription
-- \`POST /api/auth/login\` - Connexion
-- \`GET /api/auth/me\` - Profil utilisateur (authentifié)
-- \`GET /api/auth/users\` - Liste des utilisateurs (admin)
-
-### Catégories
-- \`GET /api/categories\` - Liste des catégories
-- \`POST /api/categories\` - Créer une catégorie (admin)
-- \`GET /api/categories/:id\` - Détails d'une catégorie
-- \`PUT /api/categories/:id\` - Modifier une catégorie (admin)
-- \`DELETE /api/categories/:id\` - Supprimer une catégorie (admin)
-
-### Composants
-- \`GET /api/components\` - Liste des composants
-- \`POST /api/components\` - Créer un composant (admin)
-- \`GET /api/components/:id\` - Détails d'un composant
-- \`PUT /api/components/:id\` - Modifier un composant (admin)
-- \`DELETE /api/components/:id\` - Supprimer un composant (admin)
-- \`POST /api/components/:id/prices\` - Ajouter un prix marchand (admin)
-- \`PUT /api/components/:id/prices/:priceId\` - Modifier un prix (admin)
-- \`DELETE /api/components/:id/prices/:priceId\` - Supprimer un prix (admin)
-
-### Marchands
-- \`GET /api/merchants\` - Liste des marchands
-- \`POST /api/merchants\` - Créer un marchand (admin)
-- \`GET /api/merchants/:id\` - Détails d'un marchand
-- \`PUT /api/merchants/:id\` - Modifier un marchand (admin)
-- \`DELETE /api/merchants/:id\` - Supprimer un marchand (admin)
-
-### Configurations
-- \`GET /api/configurations\` - Mes configurations (authentifié)
-- \`POST /api/configurations\` - Créer une configuration (authentifié)
-- \`GET /api/configurations/:id\` - Détails d'une configuration
-- \`PUT /api/configurations/:id\` - Modifier une configuration
-- \`DELETE /api/configurations/:id\` - Supprimer une configuration
-- \`GET /api/configurations/:id/export\` - Exporter en PDF
-
-## 🔐 Authentification
-
-L'API utilise JWT pour l'authentification. Pour accéder aux endpoints protégés :
-
-1. S'inscrire ou se connecter pour obtenir un token
-2. Ajouter le token dans le header Authorization :
-\`\`\`
-Authorization: Bearer <votre_token_jwt>
-\`\`\`
-
-## 👥 Rôles
-
-- **user** : Peut créer et gérer ses propres configurations
-- **admin** : Accès complet à toutes les ressources (CRUD catégories, composants, marchands)
+- **Backend** : Node.js, Express.js
+- **Base de données** : MongoDB, Mongoose
+- **Authentification** : JWT, bcryptjs
+- **Documentation** : Swagger UI, swagger-jsdoc
+- **Export** : PDFKit
+- **Tests** : Jest, Supertest
 
 ## 📁 Structure du Projet
 
-\`\`\`
-ProjetAPI/
-├── config/
-│   ├── database.js      # Configuration MongoDB
-│   └── swagger.js       # Configuration Swagger
-├── controllers/
-│   ├── authController.js
-│   ├── categoryController.js
-│   ├── componentController.js
-│   ├── merchantController.js
-│   └── configurationController.js
-├── middleware/
-│   └── auth.js          # Middleware JWT
-├── models/
-│   ├── User.js
-│   ├── Category.js
-│   ├── Component.js
-│   ├── Merchant.js
-│   └── Configuration.js
-├── routes/
-│   ├── auth.js
-│   ├── categories.js
-│   ├── components.js
-│   ├── merchants.js
-│   └── configurations.js
-├── __tests__/
-│   └── api.test.js      # Tests unitaires
-├── .env                 # Variables d'environnement
-├── .gitignore
-├── app.js              # Point d'entrée
-├── package.json
-├── jest.config.js
-└── README.md
-\`\`\`
+```
+ProjectAPI/
+├── config/          # Configuration (DB, Swagger)
+├── controllers/     # Logique métier
+├── middleware/      # Auth, validation
+├── models/          # Modèles Mongoose
+├── routes/          # Définition des routes
+├── __tests__/       # Tests Jest
+├── docs/            # Documentation
+├── app.js           # Point d'entrée
+└── seed.js          # Script de peuplement
+```
 
-## 🔄 Workflow de développement
+## 🔑 Endpoints Principaux
 
-1. Créer une branche pour chaque fonctionnalité
-2. Écrire les tests
-3. Implémenter la fonctionnalité
-4. Vérifier que tous les tests passent
-5. Créer une pull request
+### Authentification
+- `POST /api/auth/register` - Inscription
+- `POST /api/auth/login` - Connexion
+- `GET /api/auth/profile` - Profil utilisateur
 
-## 📝 Exemples d'utilisation
+### Composants
+- `GET /api/components` - Lister les composants
+- `GET /api/components/:id` - Détail d'un composant
+- `POST /api/components` - Créer (admin)
+- `PUT /api/components/:id` - Modifier (admin)
+- `DELETE /api/components/:id` - Supprimer (admin)
 
-### Inscription
-\`\`\`bash
-curl -X POST http://localhost:3000/api/auth/register \\
-  -H "Content-Type: application/json" \\
-  -d '{
-    "nom": "Dupont",
-    "prenom": "Jean",
-    "email": "jean.dupont@email.com",
-    "password": "password123"
-  }'
-\`\`\`
+### Configurations
+- `GET /api/configurations` - Mes configurations
+- `POST /api/configurations` - Créer une configuration
+- `GET /api/configurations/:id/export` - Export PDF
 
-### Connexion
-\`\`\`bash
-curl -X POST http://localhost:3000/api/auth/login \\
-  -H "Content-Type: application/json" \\
-  -d '{
-    "email": "jean.dupont@email.com",
-    "password": "password123"
-  }'
-\`\`\`
+📖 [Documentation API complète](./docs/API_REFERENCE.md)
 
-### Créer une configuration
-\`\`\`bash
-curl -X POST http://localhost:3000/api/configurations \\
-  -H "Authorization: Bearer <votre_token>" \\
-  -H "Content-Type: application/json" \\
-  -d '{
-    "nom": "Gaming PC 2024",
-    "description": "Configuration gaming",
-    "composants": [
-      {
-        "composant": "id_du_composant",
-        "quantite": 1,
-        "prixUnitaire": 450.99
-      }
-    ]
-  }'
-\`\`\`
+## 🧪 Tests
 
-## 🐛 Débogage
+```bash
+# Exécuter tous les tests
+npm test
 
-Activer les logs détaillés :
-\`\`\`bash
-NODE_ENV=development npm run dev
-\`\`\`
+# Tests avec couverture
+npm run test:coverage
+
+# Tests en mode watch
+npm run test:watch
+```
+
+## 🔐 Comptes de Test
+
+Après `npm run seed` :
+
+**Administrateur**
+- Email : `admin@configurateurpc.com`
+- Mot de passe : `Admin123!`
+
+**Utilisateur**
+- Email : `jean.dupont@email.com`
+- Mot de passe : `password123`
+
+## 🌍 Variables d'Environnement
+
+```env
+# Application
+PORT=3000
+NODE_ENV=development
+
+# Base de données
+MONGO_URI=mongodb://localhost:27017/configurateur_pc
+
+# JWT
+JWT_SECRET=votre_secret_securise
+JWT_EXPIRE=7d
+
+# Admin par défaut
+ADMIN_EMAIL=admin@example.com
+ADMIN_PASSWORD=ChangeMe123!
+```
+
+⚠️ **Important** : En production, générez un JWT_SECRET sécurisé :
+```bash
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+```
 
 ## 🤝 Contribution
 
-Les contributions sont les bienvenues ! N'hésitez pas à :
+Les contributions sont les bienvenues ! Consultez le [guide de contribution](./docs/CONTRIBUTING.md).
+
 1. Fork le projet
-2. Créer une branche pour votre fonctionnalité
-3. Commiter vos changements
-4. Pusher vers la branche
-5. Ouvrir une Pull Request
+2. Créez votre branche (`git checkout -b feature/ma-feature`)
+3. Committez (`git commit -m 'feat: ajout de ma feature'`)
+4. Push (`git push origin feature/ma-feature`)
+5. Ouvrez une Pull Request
+
+## 📝 Scripts NPM
+
+```bash
+npm run dev          # Démarrer en mode développement
+npm start            # Démarrer en production
+npm test             # Exécuter les tests
+npm run seed         # Peupler la base de données
+npm run test:watch   # Tests en mode watch
+```
 
 ## 📄 Licence
 
-Ce projet est sous licence ISC.
+MIT © ConfigurateurPC.com
 
-## 📧 Contact
+## 📞 Support
 
-Pour toute question : support@configurateurpc.com
-
-## 🎯 Roadmap
-
-- [ ] Interface BackOffice React/Angular
-- [ ] Vérification de compatibilité des composants
-- [ ] Notifications en temps réel
-- [ ] Système de recommandations
-- [ ] API de synchronisation des prix en temps réel
-- [ ] Support multi-langues
-- [ ] Optimisation des performances
+- 📧 Email : support@configurateurpc.com
+- 📚 Documentation : http://localhost:3000/api-docs
+- 🐛 Issues : [GitHub Issues](https://github.com/MylanSe/ProjectAPI/issues)
 
 ---
 
-**Développé avec ❤️ pour ConfigurateurPC.com**
+**Fait avec ❤️ par l'équipe ConfigurateurPC**
