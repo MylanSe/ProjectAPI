@@ -10,10 +10,16 @@
     "test:watch": "cross-env NODE_ENV=test jest --watch",
     "seed": "node seed.js"
   },
-  "keywords": ["api", "rest", "pc", "configurator"],
+  "keywords": [
+    "api",
+    "rest",
+    "pc",
+    "configurator"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.13.6",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
@@ -23,6 +29,7 @@
     "mongoose": "^8.0.3",
     "nodemon": "^3.1.11",
     "pdfkit": "^0.14.0",
+    "react-router-dom": "^7.13.1",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0"
   },
