@@ -1,0 +1,23 @@
+# Utiliser l'image Node.js officielle
+FROM node:18-alpine
+
+# Installer nodemon globalement pour le hot-reload
+RUN npm install -g nodemon
+
+# Définir le répertoire de travail
+WORKDIR /app
+
+# Copier les fichiers package.json et package-lock.json
+COPY package*.json ./
+
+# Installer toutes les dépendances (y compris dev)
+RUN npm install
+
+# Copier le reste des fichiers de l'application
+COPY . .
+
+# Exposer le port de l'application
+EXPOSE 3000
+
+# Commande pour démarrer l'application en mode développement
+CMD ["npm", "run", "dev"]

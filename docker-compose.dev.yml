@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  # Service MongoDB
+  mongodb:
+    image: mongo:7.0
+    container_name: configurateur_pc_mongodb_dev
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin123
+      MONGO_INITDB_DATABASE: configurateur_pc
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data_dev:/data/db
+    networks:
+      - configurateur_network
+
+  # Service Application Node.js (Mode développement)
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: configurateur_pc_app_dev
+    restart: unless-stopped
+    environment:
+      - PORT=3000
+      - NODE_ENV=development
+      - MONGODB_URI=mongodb://admin:admin123@mongodb:27017/configurateur_pc?authSource=admin
+      - JWT_SECRET=votre_secret_jwt_super_securise_a_changer
+      - JWT_EXPIRE=7d
+      - ADMIN_EMAIL=admin@configurateurpc.com
+      - ADMIN_PASSWORD=Admin123!
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+    networks:
+      - configurateur_network
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: npm run dev
+
+volumes:
+  mongodb_data_dev:
+    driver: local
+
+networks:
+  configurateur_network:
+    driver: bridge

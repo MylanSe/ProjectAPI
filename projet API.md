@@ -90,5 +90,5 @@ Authentification : JWT (JSON Web Tokens).
 Tests : Jest et Supertest pour les tests de l’API.
 Rendu demandé
 Un lien git du projet API et BackOffice.
-Une documentation de l’API complète et lisible par une machine (par exemple, OpenAPI) :
+Une documentation de l’API complète et lisible par une machine (par exemple, OpenAPI/Swagger) :
 tous les endpoints, opérations et formats de données.

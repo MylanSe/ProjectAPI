@@ -55,6 +55,44 @@ Cette API permet aux utilisateurs de créer des configurations PC personnalisée
 
 ## 📦 Installation
 
+### 🐳 Option 1 : Installation avec Docker (Recommandé)
+
+La méthode la plus simple pour démarrer l'application avec MongoDB.
+
+**Prérequis**
+- Docker Desktop installé et en cours d'exécution
+
+**Démarrage rapide**
+
+```bash
+# Démarrer avec le script PowerShell
+.\docker-manage.ps1 start
+
+# OU avec docker-compose directement
+docker-compose up -d
+
+# Peupler la base de données
+.\docker-manage.ps1 seed
+# OU
+docker-compose exec app npm run seed
+```
+
+**Commandes disponibles**
+```bash
+.\docker-manage.ps1 start    # Démarrer en production
+.\docker-manage.ps1 dev      # Démarrer en développement (hot-reload)
+.\docker-manage.ps1 stop     # Arrêter les services
+.\docker-manage.ps1 logs     # Voir les logs
+.\docker-manage.ps1 status   # État des services
+.\docker-manage.ps1 help     # Voir toutes les commandes
+```
+
+📖 **Documentation complète** : Voir [DOCKER.md](DOCKER.md)
+
+---
+
+### 💻 Option 2 : Installation manuelle
+
 ### Prérequis
 - Node.js (v14 ou supérieur)
 - MongoDB (local ou Atlas)
