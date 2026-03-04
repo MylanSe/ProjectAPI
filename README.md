@@ -7,6 +7,23 @@ API RESTful pour la configuration de PC sur mesure développée avec Node.js, Ex
 [![MongoDB](https://img.shields.io/badge/MongoDB-v5.0-green.svg)](https://www.mongodb.com/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
+
+### Front-end
+
+Interface Vue.js disponible dans le dossier `front/`.
+
+### Prérequis
+- Node.js v20+
+
+### Démarrage
+```bash
+cd front
+npm install
+npm run dev
+```
+
+L'interface sera accessible sur **http://localhost:5173**
+
 ## 📋 Description
 
 Cette API permet de créer des configurations PC personnalisées en sélectionnant des composants matériels, comparant les prix de différents marchands et exportant les configurations au format PDF.
